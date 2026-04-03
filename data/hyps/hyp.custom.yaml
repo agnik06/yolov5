@@ -1,0 +1,52 @@
+# Ultralytics 🚀 AGPL-3.0 License - https://ultralytics.com/license
+
+# Custom hyperparameters for better generalization with regularization
+# Optimized for bias-variance tradeoff and better results over larger epochs
+
+# Learning Rate Schedule
+lr0: 0.01 # initial learning rate
+lrf: 0.01 # final OneCycleLR learning rate (lr0 * lrf)
+
+# Optimizer Settings with Regularization
+momentum: 0.937 # SGD momentum/Adam beta1
+weight_decay: 0.0005 # L2 regularization (INCREASED for better generalization)
+
+# Warmup
+warmup_epochs: 3.0 # warmup epochs
+warmup_momentum: 0.8 # warmup initial momentum
+warmup_bias_lr: 0.1 # warmup initial bias lr
+
+# Loss Gains
+box: 0.05 # box loss gain
+cls: 0.5 # cls loss gain
+cls_pw: 1.0 # cls BCELoss positive_weight
+obj: 1.0 # obj loss gain (scale with pixels)
+obj_pw: 1.0 # obj BCELoss positive_weight
+
+# IoU Training Threshold
+iou_t: 0.20 # IoU training threshold
+anchor_t: 4.0 # anchor-multiple threshold
+
+# Focal Loss
+fl_gamma: 0.0 # focal loss gamma (increase to 0.5-1.5 for better handling of class imbalance)
+
+# Data Augmentation (Controls Overfitting)
+hsv_h: 0.015 # image HSV-Hue augmentation (INCREASED for color variation)
+hsv_s: 0.7 # image HSV-Saturation augmentation (INCREASED for saturation variation)
+hsv_v: 0.4 # image HSV-Value augmentation (INCREASED for brightness variation)
+degrees: 5.0 # image rotation (+/- deg) - ADDED for rotation invariance
+translate: 0.1 # image translation (+/- fraction) - ADDED for position invariance
+scale: 0.5 # image scale (+/- gain) - ADDED for scale invariance
+shear: 2.0 # image shear (+/- deg) - ADDED for shear invariance
+perspective: 0.0 # image perspective (+/- fraction)
+flipud: 0.0 # image flip up-down (probability)
+fliplr: 0.5 # image flip left-right (probability) - ADDED for horizontal flip
+mosaic: 1.0 # image mosaic (probability) - STRONG augmentation
+mixup: 0.1 # image mixup (probability) - ADDED for regularization
+copy_paste: 0.0 # segment copy-paste (probability)
+
+# Key Improvements for Better Generalization:
+# 1. weight_decay: 0.0005 - L2 regularization to reduce overfitting
+# 2. Increased augmentation (degrees, translate, scale, shear, mixup)
+# 3. More HSV augmentation for color invariance
+# 4. mixup: 0.1 - Mixup augmentation for regularization
