@@ -45,6 +45,7 @@ mosaic: 1.0 # image mosaic (probability) - STRONG augmentation
 mixup: 0.1 # image mixup (probability) - ADDED for regularization
 copy_paste: 0.0 # segment copy-paste (probability)
 
+
 # Key Improvements for Better Generalization:
 # 1. weight_decay: 0.0005 - L2 regularization to reduce overfitting
 # 2. Increased augmentation (degrees, translate, scale, shear, mixup)
